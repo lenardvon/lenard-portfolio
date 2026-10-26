@@ -1,10 +1,8 @@
 
 /* ========================================
    LENARD VON ALCANTARA - PERSONAL PORTFOLIO
-   Main stylesheet
 ======================================== */
 
-/* Theme */
 :root {
   --color-primary: #247747;
   --color-primary-dark: #195b35;
@@ -14,13 +12,12 @@
   --color-white: #ffffff;
   --color-border: #e1e8e1;
   --color-soft-green: #e4eee6;
-
   --container-width: 1120px;
   --radius: 12px;
   --shadow: 0 12px 32px rgba(23, 37, 28, 0.06);
 }
 
-/* Reset */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -64,8 +61,8 @@ ul {
 }
 
 img {
-  max-width: 100%;
   display: block;
+  max-width: 100%;
 }
 
 section[id] {
@@ -82,7 +79,7 @@ section[id] {
   outline-offset: 4px;
 }
 
-/* Navigation */
+/* NAVIGATION */
 .header {
   position: sticky;
   top: 0;
@@ -148,7 +145,7 @@ section[id] {
   font-size: 1.7rem;
 }
 
-/* Home / Hero */
+/* HERO */
 .hero {
   min-height: 620px;
   display: grid;
@@ -212,10 +209,7 @@ section[id] {
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .btn:hover {
@@ -246,7 +240,7 @@ section[id] {
   font-size: 0.9rem;
 }
 
-/* Profile picture */
+/* PROFILE PLACEHOLDER */
 .hero-visual {
   display: flex;
   justify-content: center;
@@ -260,7 +254,7 @@ section[id] {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  padding: 24px;
+  padding: 30px 24px;
   border: 1px solid var(--color-border);
   border-radius: 18px;
   background: var(--color-white);
@@ -268,15 +262,19 @@ section[id] {
   text-align: center;
 }
 
-.profile-photo {
-  width: 100%;
-  max-width: 250px;
-  height: 300px;
-  object-fit: cover;
-  object-position: center top;
+.profile-placeholder {
+  width: 220px;
+  height: 250px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
   border: 3px solid var(--color-primary);
   border-radius: 14px;
-  margin: 0 auto 8px;
+  background: var(--color-soft-green);
+  color: var(--color-primary);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: 3px;
 }
 
 .profile-name {
@@ -289,7 +287,7 @@ section[id] {
   font-size: 0.85rem;
 }
 
-/* Shared sections */
+/* SHARED SECTIONS */
 .section {
   padding-block: 96px;
   border-top: 1px solid var(--color-border);
@@ -307,8 +305,11 @@ section[id] {
   color: var(--color-muted);
 }
 
-/* About */
-.about-section {
+/* ABOUT */
+.about-section,
+.projects-section,
+.certificates-section,
+.contact-section {
   background: var(--color-white);
 }
 
@@ -381,8 +382,10 @@ section[id] {
   font-size: 0.95rem;
 }
 
-/* Skills */
-.skills-section {
+/* SKILLS */
+.skills-section,
+.education-section,
+.github-section {
   background: var(--color-background);
 }
 
@@ -398,10 +401,7 @@ section[id] {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-white);
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .skill-card:hover {
@@ -472,11 +472,7 @@ section[id] {
   font-size: 0.85rem;
 }
 
-/* Projects */
-.projects-section {
-  background: var(--color-white);
-}
-
+/* PROJECTS */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -489,9 +485,7 @@ section[id] {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background: var(--color-white);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
@@ -517,17 +511,9 @@ section[id] {
   font-weight: 700;
 }
 
-.preview-one {
-  background: #e6efe7;
-}
-
-.preview-two {
-  background: #edf0e8;
-}
-
-.preview-three {
-  background: #e5ece6;
-}
+.preview-one { background: #e6efe7; }
+.preview-two { background: #edf0e8; }
+.preview-three { background: #e5ece6; }
 
 .project-info {
   padding: 24px;
@@ -577,11 +563,7 @@ section[id] {
   color: var(--color-muted);
 }
 
-/* Education */
-.education-section {
-  background: var(--color-background);
-}
-
+/* EDUCATION */
 .education-card {
   display: flex;
   align-items: flex-start;
@@ -618,11 +600,7 @@ section[id] {
   font-size: 0.85rem;
 }
 
-/* Certificates */
-.certificates-section {
-  background: var(--color-white);
-}
-
+/* CERTIFICATES */
 .empty-state {
   margin-top: 36px;
   padding: 40px 24px;
@@ -647,16 +625,11 @@ section[id] {
   color: var(--color-muted);
 }
 
-/* GitHub */
-.github-section {
-  background: var(--color-background);
-}
-
+/* GITHUB PROFILE CARD */
 .github-card {
   display: flex;
   align-items: flex-start;
   gap: 22px;
-  max-width: 760px;
   margin-top: 36px;
   padding: 28px;
   border: 1px solid var(--color-border);
@@ -676,20 +649,174 @@ section[id] {
   font-weight: 800;
 }
 
+.github-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
 .github-card h3 {
   margin-bottom: 8px;
 }
 
 .github-card p {
-  margin-bottom: 16px;
   color: var(--color-muted);
 }
 
-/* Contact */
-.contact-section {
-  background: var(--color-white);
+.github-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
 }
 
+/* CONTRIBUTION GRAPH */
+.github-activity-card {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+}
+
+.github-activity-card h3,
+.github-repositories-heading h3 {
+  font-size: 1.3rem;
+}
+
+.github-muted {
+  margin-top: 8px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.github-graph-link {
+  display: block;
+  margin-top: 24px;
+  overflow-x: auto;
+}
+
+.github-contribution-graph {
+  width: 100%;
+  min-width: 520px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.github-small-note,
+.github-api-note {
+  font-size: 0.8rem;
+}
+
+/* REPOSITORY CARDS */
+.github-repositories {
+  margin-top: 48px;
+}
+
+.github-repositories-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.github-repositories-heading .section-label {
+  margin-bottom: 6px;
+}
+
+.github-all-link {
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.github-all-link:hover,
+.contact-detail a:hover {
+  text-decoration: underline;
+}
+
+.github-repo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.github-repo-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.github-repo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.github-repo-name {
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
+.github-repo-name a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.github-repo-name a:hover,
+.github-repo-link:hover {
+  text-decoration: underline;
+}
+
+.github-repo-description {
+  flex: 1;
+  margin-top: 10px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.github-repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.github-repo-language {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+}
+
+.github-repo-link {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 18px;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.github-loading,
+.github-empty,
+.github-error {
+  grid-column: 1 / -1;
+  padding: 20px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+/* CONTACT */
 .contact-grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -721,6 +848,10 @@ section[id] {
 .contact-detail p {
   color: var(--color-muted);
   overflow-wrap: anywhere;
+}
+
+.contact-detail a {
+  color: var(--color-primary);
 }
 
 .contact-form {
@@ -787,7 +918,7 @@ section[id] {
   font-size: 0.78rem;
 }
 
-/* Footer */
+/* FOOTER */
 .footer {
   padding-block: 24px;
   border-top: 1px solid var(--color-border);
@@ -814,19 +945,11 @@ section[id] {
   white-space: nowrap;
 }
 
-/* Tablet */
+/* TABLET */
 @media (max-width: 1000px) {
-  .nav-menu {
-    gap: 12px;
-  }
-
-  .nav-menu a {
-    font-size: 0.8rem;
-  }
-
-  .hero {
-    gap: 32px;
-  }
+  .nav-menu { gap: 12px; }
+  .nav-menu a { font-size: 0.8rem; }
+  .hero { gap: 32px; }
 
   .skills-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -837,15 +960,10 @@ section[id] {
   }
 }
 
-/* Mobile */
+/* MOBILE */
 @media (max-width: 760px) {
-  .navbar {
-    min-height: 68px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
+  .navbar { min-height: 68px; }
+  .menu-toggle { display: block; }
 
   .nav-menu {
     display: none;
@@ -861,9 +979,7 @@ section[id] {
     background: var(--color-background);
   }
 
-  .nav-menu.open {
-    display: flex;
-  }
+  .nav-menu.open { display: flex; }
 
   .nav-menu li a {
     display: block;
@@ -878,9 +994,7 @@ section[id] {
     padding-block: 64px;
   }
 
-  .hero-visual {
-    grid-row: 1;
-  }
+  .hero-visual { grid-row: 1; }
 
   .profile-card {
     width: 100%;
@@ -888,18 +1002,13 @@ section[id] {
     padding: 20px;
   }
 
-  .profile-photo {
-    max-width: 210px;
-    height: 250px;
+  .profile-placeholder {
+    width: 190px;
+    height: 220px;
   }
 
-  .hero h1 {
-    letter-spacing: -1px;
-  }
-
-  .section {
-    padding-block: 68px;
-  }
+  .hero h1 { letter-spacing: -1px; }
+  .section { padding-block: 68px; }
 
   .about-grid,
   .contact-grid {
@@ -912,13 +1021,18 @@ section[id] {
     padding: 24px;
   }
 
-  .projects-grid {
-    grid-template-columns: 1fr;
+  .projects-grid { grid-template-columns: 1fr; }
+  .project-info > p:not(.project-number) { min-height: auto; }
+
+  .github-activity-card { padding: 20px; }
+  .github-repo-grid { grid-template-columns: 1fr; }
+
+  .github-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .project-info > p:not(.project-number) {
-    min-height: auto;
-  }
+  .github-actions .btn { width: 100%; }
 
   .footer-content {
     flex-direction: column;
@@ -926,47 +1040,28 @@ section[id] {
   }
 }
 
-/* Small phones */
+/* SMALL PHONES */
 @media (max-width: 420px) {
-  .container {
-    width: calc(100% - 32px);
-  }
+  .container { width: calc(100% - 32px); }
 
-  .hero-buttons {
-    flex-direction: column;
-  }
+  .hero-buttons { flex-direction: column; }
+  .hero-buttons .btn { width: 100%; }
 
-  .hero-buttons .btn {
-    width: 100%;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .skill-card p {
-    min-height: auto;
-  }
+  .skills-grid { grid-template-columns: 1fr; }
+  .skill-card p { min-height: auto; }
 
   .github-card {
     flex-direction: column;
     padding: 22px;
   }
 
-  .education-card {
-    padding: 20px;
-  }
-
-  .contact-form {
-    padding: 18px;
-  }
+  .education-card { padding: 20px; }
+  .contact-form { padding: 18px; }
 }
 
-/* Accessibility: reduced motion */
+/* ACCESSIBILITY */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
 
   *,
   *::before,
