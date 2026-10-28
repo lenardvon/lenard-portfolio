@@ -4,326 +4,626 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lenard Von Alcantara, an IT student and future developer.">
-  <meta name="theme-color" content="#f8faf8">
-  <title>Lenard Von Alcantara | Personal Portfolio</title>
-
+  <meta name="description" content="Lenard Von Alcantara's personal portfolio, projects, skills, and education.">
+  <title>Lenard Von Alcantara | Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
 </head>
 <body>
-  <header class="header">
-    <nav class="navbar container" aria-label="Main navigation">
-      <a href="#home" class="logo">LVA<span>.</span></a>
 
-      <button class="menu-toggle" id="menu-toggle"
-        aria-label="Open navigation menu" aria-expanded="false"
-        aria-controls="nav-menu" type="button">☰</button>
+  <div class="app-layout">
 
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#certificates">Certificates</a></li>
-        <li><a href="#github">GitHub</a></li>
-        <li><a href="#contact" class="nav-contact">Contact Me</a></li>
-      </ul>
-    </nav>
-  </header>
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
 
-  <main>
-    <!-- HOME -->
-    <section class="hero container" id="home">
-      <div class="hero-content">
-        <p class="eyebrow">IT STUDENT &amp; FUTURE DEVELOPER</p>
-        <h1>Hi, I'm <span>Lenard Von Alcantara.</span></h1>
-        <h2>Learning today. Building for tomorrow.</h2>
+      <div class="sidebar-top">
+        <a href="#dashboard" class="brand" data-page="dashboard">
+          <span class="brand-mark">L</span>
+          <span class="brand-name">LENARD<span>.</span></span>
+        </a>
 
-        <p class="hero-description">
-          I am an IT student passionate about technology, web development,
-          and creating useful digital experiences. I am continuously learning
-          and improving my skills through hands-on projects.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">Explore My Projects</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
-        </div>
-
-        <p class="hero-note">Currently learning HTML, CSS, and JavaScript.</p>
+        <button class="icon-button collapse-btn"
+          id="collapseBtn"
+          type="button"
+          aria-label="Collapse sidebar"
+          title="Collapse sidebar">
+          <span id="collapseIcon">‹</span>
+        </button>
       </div>
 
-      <div class="hero-visual">
-        <div class="profile-card">
+      <!-- PROFILE -->
+      <div class="sidebar-profile">
+        <div class="avatar-wrap">
           <img
-  src="assets/images/profile.jpg"
-  alt="Lenard Von Alcantara"
-  class="profile-image"
-/>
-          <p class="profile-name">Lenard Von Alcantara</p>
-          <span>IT Student &amp; Future Developer</span>
-          <span>Always learning, always improving.</span>
+            src="assets/images/profile.jpg"
+            alt="Lenard Von Alcantara"
+            class="profile-image"
+            id="profileImage"
+          >
+          <span class="avatar-fallback" id="avatarFallback">LVA</span>
+        </div>
+
+        <div class="profile-details">
+          <h2>Lenard Von Alcantara</h2>
+          <p>IT Student &amp; Future Developer</p>
         </div>
       </div>
-    </section>
 
-    <!-- ABOUT -->
-    <section class="section about-section" id="about">
-      <div class="container">
-        <p class="section-label">GET TO KNOW ME</p>
-        <h2 class="section-title">About Me</h2>
+      <!-- NAVIGATION -->
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <p class="nav-label">MENU</p>
 
-        <div class="about-grid">
-          <div class="about-content">
-            <h3>My journey into technology.</h3>
-            <p>Hello! I'm Lenard Von Alcantara, an IT student interested in web development and software technology.</p>
-            <p>I am currently learning HTML, CSS, and JavaScript. As a beginner, I focus on understanding the fundamentals, practicing regularly, and building projects that help me improve my technical skills.</p>
-            <p>My goal is to become a capable developer who can create useful, accessible, and user-friendly digital experiences.</p>
-            <a href="#projects" class="btn btn-primary">View My Work</a>
+        <button class="nav-item active" data-page="dashboard" type="button">
+          <span class="nav-icon">▦</span>
+          <span class="nav-text">Dashboard</span>
+        </button>
+
+        <button class="nav-item" data-page="about" type="button">
+          <span class="nav-icon">◎</span>
+          <span class="nav-text">About Me</span>
+        </button>
+
+        <button class="nav-item" data-page="skills" type="button">
+          <span class="nav-icon">&lt;/&gt;</span>
+          <span class="nav-text">My Skills</span>
+        </button>
+
+        <button class="nav-item" data-page="projects" type="button">
+          <span class="nav-icon">▤</span>
+          <span class="nav-text">Projects</span>
+        </button>
+
+        <button class="nav-item" data-page="education" type="button">
+          <span class="nav-icon">⌂</span>
+          <span class="nav-text">Education</span>
+        </button>
+
+        <button class="nav-item" data-page="certificates" type="button">
+          <span class="nav-icon">◇</span>
+          <span class="nav-text">Certificates</span>
+        </button>
+
+        <p class="nav-label nav-label-spaced">CONNECT</p>
+
+        <button class="nav-item" data-page="github" type="button">
+          <span class="nav-icon">⌘</span>
+          <span class="nav-text">GitHub</span>
+        </button>
+
+        <button class="nav-item" data-page="contact" type="button">
+          <span class="nav-icon">✉</span>
+          <span class="nav-text">Contact Me</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="availability-dot"></div>
+        <span class="nav-text">Open to opportunities</span>
+      </div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <div class="main-area">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu-btn"
+            id="mobileMenuBtn"
+            type="button"
+            aria-label="Open navigation">
+            ☰
+          </button>
+
+          <div>
+            <p class="breadcrumb">Portfolio / <span id="breadcrumbPage">Dashboard</span></p>
+            <h1 id="pageHeading">Dashboard</h1>
           </div>
-
-          <div class="about-highlight">
-            <div class="highlight-icon" aria-hidden="true">&lt;/&gt;</div>
-            <h3>Learn. Build. Improve.</h3>
-            <p>Every project is an opportunity to learn something new and become a better developer.</p>
-            <div class="about-detail">
-              <span>Current focus</span>
-              <strong>Frontend Development</strong>
-            </div>
-            <div class="about-detail">
-              <span>Learning approach</span>
-              <strong>Practice through projects</strong>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- SKILLS -->
-    <section class="section skills-section" id="skills">
-      <div class="container">
-        <p class="section-label">WHAT I'M LEARNING</p>
-        <h2 class="section-title">Technical Skills</h2>
-        <p class="section-description">The technologies and tools I am learning to build my foundation in web development.</p>
-
-        <div class="skills-grid">
-          <article class="skill-card">
-            <div class="skill-icon html-icon">5</div>
-            <h3>HTML5</h3>
-            <p>Creating semantic and well-structured web pages.</p>
-            <span class="skill-status">Currently Learning</span>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon css-icon">#</div>
-            <h3>CSS3</h3>
-            <p>Designing layouts, styling elements, and responsive pages.</p>
-            <span class="skill-status">Currently Learning</span>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon js-icon">JS</div>
-            <h3>JavaScript</h3>
-            <p>Learning programming logic and interactive features.</p>
-            <span class="skill-status">Currently Learning</span>
-          </article>
-          <article class="skill-card">
-            <div class="skill-icon git-icon">G</div>
-            <h3>Git &amp; GitHub</h3>
-            <p>Learning version control and project repositories.</p>
-            <span class="skill-status">Learning &amp; Practicing</span>
-          </article>
+        <div class="topbar-right">
+          <span class="status-badge">
+            <span class="status-dot"></span>
+            Available for opportunities
+          </span>
+          <a class="topbar-github"
+            href="https://github.com/lenardvon"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open GitHub profile">GitHub ↗</a>
         </div>
-        <p class="skills-note">Skills and learning progress will be updated as I gain experience.</p>
-      </div>
-    </section>
+      </header>
 
-    <!-- PROJECTS -->
-    <section class="section projects-section" id="projects">
-      <div class="container">
-        <p class="section-label">MY WORK</p>
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-description">A collection of projects that demonstrate my learning journey.</p>
+      <main class="content-area">
 
-        <div class="projects-grid">
-          <article class="project-card">
-            <div class="project-preview preview-one"><span>HTML · CSS · JavaScript</span></div>
-            <div class="project-info">
-              <p class="project-number">PROJECT 01</p>
-              <h3>Personal Portfolio</h3>
-              <p>A responsive website introducing me, my skills, and my development journey.</p>
-              <div class="project-links">
-                <a href="https://github.com/lenardvon/lenard-portfolio" target="_blank" rel="noopener noreferrer">View Source Code ↗</a>
-                <span>In Progress</span>
+        <!-- DASHBOARD VIEW -->
+        <section class="page-view active" id="page-dashboard" data-title="Dashboard">
+
+          <div class="welcome-banner">
+            <div class="welcome-copy">
+              <p class="eyebrow">WELCOME TO MY PORTFOLIO</p>
+              <h2>Hello, I'm <span>Lenard.</span></h2>
+              <p class="welcome-description">
+                IT student nga pala ako passionate about sa web development,
+                programming, and building useful digital solutions.
+              </p>
+
+              <div class="welcome-actions">
+                <button class="btn btn-primary" data-go="projects" type="button">
+                  Explore My Projects <span>→</span>
+                </button>
+                <button class="btn btn-secondary" data-go="contact" type="button">
+                  Contact Me
+                </button>
               </div>
             </div>
-          </article>
 
-          <article class="project-card">
-            <div class="project-preview preview-two"><span>Web Development</span></div>
-            <div class="project-info">
-              <p class="project-number">PROJECT 02</p>
-              <h3>Future Project</h3>
-              <p>A placeholder for a future application that I will build as I develop my programming skills.</p>
-              <div class="project-links"><span>Coming Soon</span></div>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <div class="project-preview preview-three"><span>Creative Coding</span></div>
-            <div class="project-info">
-              <p class="project-number">PROJECT 03</p>
-              <h3>More Projects Ahead</h3>
-              <p>This space will showcase additional projects, experiments, and practical learning activities.</p>
-              <div class="project-links"><span>Coming Soon</span></div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="section education-section" id="education">
-      <div class="container">
-        <p class="section-label">MY BACKGROUND</p>
-        <h2 class="section-title">Education</h2>
-
-        <article class="education-card">
-          <div class="education-marker" aria-hidden="true"></div>
-          <div>
-            <p class="project-number">CURRENT STUDIES</p>
-            <h3>Information Technology</h3>
-            <p>Currently pursuing my studies in Information Technology and developing foundational technical skills.</p>
-            <p class="education-note">COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE (CCDI) — 2024 to present</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- CERTIFICATES -->
-    <section class="section certificates-section" id="certificates">
-      <div class="container">
-        <p class="section-label">LEARNING &amp; ACHIEVEMENTS</p>
-        <h2 class="section-title">Certificates</h2>
-        <p class="section-description">Professional training and certifications will be listed here.</p>
-
-        <div class="empty-state">
-          <div class="empty-icon" aria-hidden="true">✦</div>
-          <h3>More milestones ahead</h3>
-          <p>Certificates and completed training can be added here as I continue learning.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- GITHUB -->
-    <section class="section github-section" id="github">
-      <div class="container">
-        <p class="section-label">MY CODE &amp; PROGRESS</p>
-        <h2 class="section-title">GitHub Activity</h2>
-        <p class="section-description">Explore my public repositories and follow my coding journey.</p>
-
-        <div class="github-card">
-          <div class="github-symbol" aria-hidden="true">GH</div>
-          <div class="github-card-content">
-            <h3>Lenard Von Alcantara</h3>
-            <p>IT student learning web development and building projects to improve my programming skills.</p>
-            <div class="github-actions">
-              <a class="btn btn-primary" href="https://github.com/lenardvon" target="_blank" rel="noopener noreferrer">Visit My GitHub ↗</a>
-              <a class="btn btn-outline" href="https://github.com/lenardvon/lenard-portfolio" target="_blank" rel="noopener noreferrer">View Portfolio Repository ↗</a>
+            <div class="welcome-decoration" aria-hidden="true">
+              <div class="decoration-circle circle-one"></div>
+              <div class="decoration-circle circle-two"></div>
+              <div class="code-card">
+                <span class="code-line"><i>const</i> developer = {</span>
+                <span class="code-line code-indent">name: <b>"Lenard"</b>,</span>
+                <span class="code-line code-indent">role: <b>"IT Student"</b></span>
+                <span class="code-line">};</span>
+                <span class="code-cursor">▍</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="github-activity-card">
-          <h3>Contribution Activity</h3>
-          <p class="github-muted">A visual overview of my GitHub contributions.</p>
-          <a class="github-graph-link" href="https://github.com/lenardvon" target="_blank" rel="noopener noreferrer">
-            <img
-              class="github-contribution-graph"
-              src="https://ghchart.rshah.org/247747/lenardvon"
-              alt="GitHub contribution graph for lenardvon"
-              loading="lazy">
-          </a>
-          <p class="github-muted github-small-note">If the graph does not load, visit my GitHub profile to see my activity.</p>
-        </div>
-
-        <div class="github-repositories">
-          <div class="github-repositories-heading">
+          <div class="section-heading">
             <div>
-              <p class="section-label">MY PUBLIC WORK</p>
-              <h3>Latest Repositories</h3>
+              <p class="eyebrow">OVERVIEW</p>
+              <h2>Portfolio Overview</h2>
             </div>
-            <a href="https://github.com/lenardvon?tab=repositories" target="_blank" rel="noopener noreferrer" class="github-all-link">View All Repositories ↗</a>
+            <span class="subtle-text">A quick look at my journey</span>
           </div>
 
-          <div class="github-repo-grid" id="github-repo-grid">
-            <p class="github-loading">Loading public repositories...</p>
-          </div>
-          <p class="github-muted github-api-note" id="github-repo-status" role="status" aria-live="polite"></p>
-        </div>
-      </div>
-    </section>
+          <div class="stats-grid">
+            <button class="stat-card" data-go="skills" type="button">
+              <span class="stat-icon green-icon">&lt;/&gt;</span>
+              <span class="stat-label">Technical Skills</span>
+              <strong>My Skills</strong>
+              <span class="stat-link">Explore skills →</span>
+            </button>
 
-    <!-- CONTACT -->
-    <section class="section contact-section" id="contact">
-      <div class="container">
-        <p class="section-label">LET'S CONNECT</p>
-        <h2 class="section-title">Contact Me</h2>
-        <p class="section-description">Have a question or want to discuss a project? Send a message using the form below.</p>
+            <button class="stat-card" data-go="projects" type="button">
+              <span class="stat-icon blue-icon">▤</span>
+              <span class="stat-label">Portfolio Work</span>
+              <strong>My Projects</strong>
+              <span class="stat-link">View projects →</span>
+            </button>
 
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Get in touch.</h3>
-            <p>I am open to learning opportunities, collaboration, and connecting with other people in technology.</p>
+            <button class="stat-card" data-go="education" type="button">
+              <span class="stat-icon orange-icon">⌂</span>
+              <span class="stat-label">Learning Journey</span>
+              <strong>Education</strong>
+              <span class="stat-link">View background →</span>
+            </button>
 
-            
-<div class="contact-item">
-  <h3>Email Me</h3>
-  <p>
-    <a href="mailto:lenardvona@gmail.com">
-      lenardvona@gmail.com
-    </a>
-  </p>
-</div>
-
-            <div class="contact-detail">
-              <span>GitHub</span>
-              <p><a href="https://github.com/lenardvon" target="_blank" rel="noopener noreferrer">github.com/lenardvon ↗</a></p>
-            </div>
+            <button class="stat-card" data-go="github" type="button">
+              <span class="stat-icon purple-icon">⌘</span>
+              <span class="stat-label">Code &amp; Repositories</span>
+              <strong>GitHub</strong>
+              <span class="stat-link">Explore repositories →</span>
+            </button>
           </div>
 
-          <form class="contact-form" id="contact-form">
-            <div class="form-group">
-              <label for="name">Full name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required maxlength="100">
-            </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required maxlength="254">
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" name="subject" placeholder="What is your message about?" required maxlength="150">
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required maxlength="3000"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Validate Message</button>
-            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-            <p class="form-note">Demo form only. Messages are not sent to an email server.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
+          <div class="dashboard-grid">
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">INTRODUCTION</p>
+                  <h3>About Me</h3>
+                </div>
+                <button class="text-button" data-go="about" type="button">Read more →</button>
+              </div>
+              <p class="body-copy">
+                HI! I'm Lenard Von Alcantara, an IT student developing my skills
+                in programming and software development. So far naga enjoy naman learning
+                technologies and creating projects that help me grow as a developer.
+              </p>
+              <div class="tag-list">
+                <span class="tag">IT Student</span>
+                <span class="tag">Web Development</span>
+                <span class="tag">Software Development</span>
+              </div>
+            </article>
 
-  <footer class="footer">
-    <div class="container footer-content">
-      <a href="#home" class="logo">LVA<span>.</span></a>
-      <p>&copy; <span id="current-year"></span> Lenard Von Alcantara. All rights reserved.</p>
-      <a href="#home" class="back-to-top">Back to top ↑</a>
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">QUICK LINKS</p>
+                  <h3>Let's Connect</h3>
+                </div>
+              </div>
+
+              <a class="quick-link"
+                href="https://github.com/lenardvon"
+                target="_blank"
+                rel="noopener noreferrer">
+                <span class="quick-link-icon">⌘</span>
+                <span><strong>GitHub Profile</strong><small>View my public code</small></span>
+                <span class="quick-arrow">↗</span>
+              </a>
+
+              <button class="quick-link quick-link-button" data-go="contact" type="button">
+                <span class="quick-link-icon">✉</span>
+                <span><strong>Contact Me</strong><small>Get in touch with me</small></span>
+                <span class="quick-arrow">→</span>
+              </button>
+            </article>
+          </div>
+        </section>
+
+        <!-- ABOUT VIEW -->
+        <section class="page-view" id="page-about" data-title="About Me">
+          <div class="page-intro">
+            <p class="eyebrow">GET TO KNOW ME</p>
+            <h2>About Me</h2>
+            <p>My background, interests, and goals as an aspiring developer.</p>
+          </div>
+
+          <article class="panel about-panel">
+            <div class="about-profile">
+              <div class="about-avatar">
+                <img src="assets/images/profile.jpg" alt="Lenard Von Alcantara"
+                  class="profile-image about-profile-image">
+                <span class="avatar-fallback">LVA</span>
+              </div>
+              <div>
+                <h3>Lenard Von Alcantara</h3>
+                <p class="muted">IT Student &amp; Future Developer</p>
+                <span class="tag">Learning and Building</span>
+              </div>
+            </div>
+
+            <div class="about-copy">
+              <h3>Who I Am</h3>
+              <p class="body-copy">
+                I am an Information Technology student interested in programming,
+                web development, and software engineering. I am continuously
+                improving my technical skills through practice, coursework,
+                and personal projects. Kahit stress nayan sya, aray mo!
+              </p>
+
+              <h3>My Goal</h3>
+              <p class="body-copy">
+                My goal is to become a capable software developer who can build
+                useful, reliable, and user-friendly applications while continuing
+                to learn new technologies.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <!-- SKILLS VIEW -->
+        <section class="page-view" id="page-skills" data-title="My Skills">
+          <div class="page-intro">
+            <p class="eyebrow">WHAT I'M LEARNING</p>
+            <h2>My Skills</h2>
+            <p>Technologies and tools I use or am currently learning.</p>
+          </div>
+
+          <div class="skills-grid">
+            <article class="panel skill-card">
+              <div class="skill-symbol">&lt;/&gt;</div>
+              <h3>HTML</h3>
+              <p class="muted">Web page structure</p>
+              <span class="tag">Frontend</span>
+            </article>
+
+            <article class="panel skill-card">
+              <div class="skill-symbol">#</div>
+              <h3>CSS</h3>
+              <p class="muted">Styling and responsive layouts</p>
+              <span class="tag">Frontend</span>
+            </article>
+
+            <article class="panel skill-card">
+              <div class="skill-symbol">JS</div>
+              <h3>JavaScript</h3>
+              <p class="muted">Interactive web experiences</p>
+              <span class="tag">Programming</span>
+            </article>
+
+            <article class="panel skill-card">
+              <div class="skill-symbol">PHP</div>
+              <h3>PHP / Laravel</h3>
+              <p class="muted">Backend development learning</p>
+              <span class="tag">Backend</span>
+            </article>
+
+            <article class="panel skill-card">
+              <div class="skill-symbol">DB</div>
+              <h3>Databases</h3>
+              <p class="muted">Data organization and management</p>
+              <span class="tag">Data</span>
+            </article>
+
+            <article class="panel skill-card">
+              <div class="skill-symbol">⌘</div>
+              <h3>Git &amp; GitHub</h3>
+              <p class="muted">Version control and repositories</p>
+              <span class="tag">Tools</span>
+            </article>
+          </div>
+
+          <p class="notice">
+            Edit this section to match your actual skills and experience.
+            These are not proficiency ratings.
+          </p>
+        </section>
+
+        <!-- PROJECTS VIEW -->
+        <section class="page-view" id="page-projects" data-title="Projects">
+          <div class="page-intro">
+            <p class="eyebrow">MY WORK</p>
+            <h2>Projects</h2>
+            <p>Selected work and projects I have developed or am developing.</p>
+          </div>
+
+          <div class="project-grid">
+            <article class="panel project-card">
+              <div class="project-art project-art-green">
+                <span class="project-art-symbol">&lt;/&gt;</span>
+                <span class="project-art-label">WEB DEVELOPMENT</span>
+              </div>
+              <div class="project-content">
+                <h3>Personal Portfolio Website</h3>
+                <p class="body-copy">
+                  A responsive portfolio to introduce myself and showcase
+                  my skills, education, and projects.
+                </p>
+                <div class="tag-list">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+                <a class="text-button project-link"
+                  href="https://github.com/lenardvon"
+                  target="_blank"
+                  rel="noopener noreferrer">View GitHub ↗</a>
+              </div>
+            </article>
+
+            <article class="panel project-card">
+              <div class="project-art project-art-blue">
+                <span class="project-art-symbol">PC</span>
+                <span class="project-art-label">WEB APPLICATION</span>
+              </div>
+              <div class="project-content">
+                <h3>PC Builder Shop</h3>
+                <p class="body-copy">
+                  A shop website concept for browsing computer components,
+                  filtering products, and viewing product information.
+                </p>
+                <div class="tag-list">
+                  <span class="tag">HTML</span>
+                  <span class="tag">CSS</span>
+                  <span class="tag">JavaScript</span>
+                </div>
+                <a class="text-button project-link"
+                  href="https://github.com/lenardvon"
+                  target="_blank"
+                  rel="noopener noreferrer">View GitHub ↗</a>
+              </div>
+            </article>
+
+            <article class="panel project-card">
+              <div class="project-art project-art-orange">
+                <span class="project-art-symbol">BC</span>
+                <span class="project-art-label">CAPSTONE CONCEPT</span>
+              </div>
+              <div class="project-content">
+                <h3>BrgyConnect</h3>
+                <p class="body-copy">
+                  An online complaint and concern management system concept
+                  for helping residents submit and track barangay concerns.
+                </p>
+                <div class="tag-list">
+                  <span class="tag">Web System</span>
+                  <span class="tag">Capstone</span>
+                </div>
+                <a class="text-button project-link"
+                  href="https://github.com/lenardvon"
+                  target="_blank"
+                  rel="noopener noreferrer">View GitHub ↗</a>
+              </div>
+            </article>
+          </div>
+
+          <p class="notice">
+            The projects above are sample portfolio entries based on your
+            previous project topics. Replace the descriptions and links with
+            the correct details for each project before publishing.
+          </p>
+        </section>
+
+        <!-- EDUCATION VIEW -->
+        <section class="page-view" id="page-education" data-title="Education">
+          <div class="page-intro">
+            <p class="eyebrow">MY LEARNING JOURNEY</p>
+            <h2>Education</h2>
+            <p>My educational background and ongoing learning.</p>
+          </div>
+
+          <article class="panel timeline-card">
+            <div class="timeline-marker">01</div>
+            <div>
+              <span class="tag">Current / In Progress</span>
+              <h3>Information Technology</h3>
+              <p class="body-copy">
+                Studying IT concepts, programming, web development,
+                networking, and software development.
+              </p>
+              <p class="muted">COMPUTER COMMUNICATION DEVELOPMENT INSTITUTE</p>
+            </div>
+          </article>
+
+          <p class="notice">
+          
+          </p>
+        </section>
+
+        <!-- CERTIFICATES VIEW -->
+        <section class="page-view" id="page-certificates" data-title="Certificates">
+          <div class="page-intro">
+            <p class="eyebrow">ACHIEVEMENTS</p>
+            <h2>Certificates</h2>
+            <p>Training, certificates, and accomplishments.</p>
+          </div>
+
+          <article class="panel empty-state">
+            <div class="empty-icon">◇</div>
+            <h3>Certificates &amp; Achievements</h3>
+            <p class="body-copy">
+              Add your certificates here when available. You can include
+              the certificate title, issuing organization, completion date,
+              and a link or image of the certificate.
+            </p>
+            <button class="btn btn-secondary" data-go="contact" type="button">
+              Contact Me
+            </button>
+          </article>
+        </section>
+
+        <!-- GITHUB VIEW -->
+        <section class="page-view" id="page-github" data-title="GitHub">
+          <div class="page-intro">
+            <p class="eyebrow">MY CODE &amp; CONTRIBUTIONS</p>
+            <h2>GitHub Activity</h2>
+            <p>Explore my public repositories and development work.</p>
+          </div>
+
+          <article class="panel github-profile-panel">
+            <div class="github-mark">⌘</div>
+            <div class="github-profile-info">
+              <h3>Lenard Von Alcantara</h3>
+              <p class="muted">@lenardvon</p>
+              <p class="body-copy">
+                Visit my GitHub profile to explore public repositories,
+                source code, and projects.
+              </p>
+            </div>
+            <a class="btn btn-primary"
+              href="https://github.com/lenardvon"
+              target="_blank"
+              rel="noopener noreferrer">Open GitHub ↗</a>
+          </article>
+
+          <div class="section-heading github-heading">
+            <div>
+              <p class="eyebrow">PUBLIC CODE</p>
+              <h2>My Repositories</h2>
+            </div>
+            <span class="subtle-text" id="github-repo-count">Loading...</span>
+          </div>
+
+          <p class="github-status" id="github-repo-status" role="status">
+            Loading public repositories...
+          </p>
+
+          <div class="repo-grid" id="github-repo-grid"></div>
+
+          <div class="contribution-panel panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">CONTRIBUTIONS</p>
+                <h3>GitHub Contribution Graph</h3>
+              </div>
+            </div>
+            <p class="body-copy">
+              View your contribution history directly on your GitHub profile.
+            </p>
+            <a class="text-button"
+              href="https://github.com/lenardvon"
+              target="_blank"
+              rel="noopener noreferrer">View contributions on GitHub ↗</a>
+          </div>
+        </section>
+
+        <!-- CONTACT VIEW -->
+        <section class="page-view" id="page-contact" data-title="Contact Me">
+          <div class="page-intro">
+            <p class="eyebrow">LET'S CONNECT</p>
+            <h2>Contact Me</h2>
+            <p>Have a question, project idea, or opportunity? Get in touch.</p>
+          </div>
+
+          <div class="contact-grid">
+            <article class="panel contact-info">
+              <h3>Get in Touch</h3>
+              <p class="body-copy">
+                I'm open to connecting with fellow students, developers,
+                and people interested in technology.
+              </p>
+
+              <div class="contact-detail">
+                <span class="contact-icon">✉</span>
+                <div>
+                  <strong>Email Address</strong>
+                  <p id="contact-email-text">Add your email address in script.js</p>
+                </div>
+              </div>
+
+              <button class="btn btn-secondary" id="copyEmailBtn" type="button">
+                Copy Email Address
+              </button>
+
+              <a class="contact-social"
+                href="https://github.com/lenardvon"
+                target="_blank"
+                rel="noopener noreferrer">
+                <span class="contact-icon">⌘</span>
+                <span><strong>GitHub</strong><small>github.com/lenardvon</small></span>
+                <span class="quick-arrow">↗</span>
+              </a>
+            </article>
+
+            <article class="panel contact-form-panel">
+              <h3>Send a Message</h3>
+              <p class="muted">Fill in the details below.</p>
+
+              <form id="contactForm">
+                <label for="contactName">Your Name</label>
+                <input id="contactName" name="name" type="text"
+                  placeholder="Enter your name" required maxlength="100">
+
+                <label for="contactSenderEmail">Your Email</label>
+                <input id="contactSenderEmail" name="email" type="email"
+                  placeholder="you@example.com" required maxlength="254">
+
+                <label for="contactSubject">Subject</label>
+                <input id="contactSubject" name="subject" type="text"
+                  placeholder="What is this about?" required maxlength="150">
+
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" name="message" rows="5"
+                  placeholder="Write your message here..." required maxlength="5000"></textarea>
+
+                <button class="btn btn-primary btn-full" type="submit">
+                  Prepare Email <span>→</span>
+                </button>
+
+                <p class="form-feedback" id="contactFeedback" role="status">
+                  This form opens your email application; it does not send
+                  messages directly from the website.
+                </p>
+              </form>
+            </article>
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="site-footer">
+        <p>© <span id="currentYear"></span> Lenard Von Alcantara. Built with HTML, CSS &amp; JavaScript.</p>
+        <button class="back-to-top" id="backToTop" type="button">Back to top ↑</button>
+      </footer>
     </div>
-  </footer>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 </body>
 </html>

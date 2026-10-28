@@ -1,219 +1,460 @@
 
-"use strict";
+/* =========================================
+   LENARD PORTFOLIO - JAVASCRIPT
+========================================= */
 
-// ========================================
-// MOBILE NAVIGATION
-// ========================================
+document.addEventListener("DOMContentLoaded", () => {
+  const appLayout = document.querySelector(".app-layout");
+  const sidebar = document.getElementById("sidebar");
+  const collapseBtn = document.getElementById("collapseBtn");
+  const collapseIcon = document.getElementById("collapseIcon");
+  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+  const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-const menuToggle = document.querySelector("#menu-toggle");
-const navMenu = document.querySelector("#nav-menu");
-const navLinks = document.querySelectorAll("#nav-menu a");
+  const pageHeading = document.getElementById("pageHeading");
+  const breadcrumbPage = document.getElementById("breadcrumbPage");
+  const navItems = document.querySelectorAll(".nav-item");
+  const pageViews = document.querySelectorAll(".page-view");
 
-if (menuToggle && navMenu) {
-  menuToggle.addEventListener("click", () => {
-    const isOpen = navMenu.classList.toggle("open");
+  const mobileQuery = window.matchMedia("(max-width: 760px)");
 
-    menuToggle.setAttribute("aria-expanded", String(isOpen));
-    menuToggle.setAttribute(
-      "aria-label",
-      isOpen ? "Close navigation menu" : "Open navigation menu"
-    );
-    menuToggle.textContent = isOpen ? "✕" : "☰";
-  });
+  // CHANGE THIS to your actual email address.
+  // Example: const CONTACT_EMAIL = "yourname@gmail.com";
+  const CONTACT_EMAIL = "lenardvona@gmail.com";
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      navMenu.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation menu");
-      menuToggle.textContent = "☰";
+  const GITHUB_USERNAME = "lenardvon";
+  const GITHUB_API =
+    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100&type=owner`;
+
+  // =========================================
+  // PAGE NAVIGATION
+  // =========================================
+
+  function showPage(pageName, updateHash = true) {
+    const targetPage = document.getElementById(`page-${pageName}`);
+
+    // Do not navigate to a page that does not exist.
+    if (!targetPage) {
+      return;
+    }
+
+    pageViews.forEach((page) => {
+      const isActive = page.id === `page-${pageName}`;
+
+      page.classList.toggle("active", isActive);
+      page.setAttribute("aria-hidden", String(!isActive));
+    });
+
+    navItems.forEach((item) => {
+      const isActive = item.dataset.page === pageName;
+
+      item.classList.toggle("active", isActive);
+
+      if (isActive) {
+        item.setAttribute("aria-current", "page");
+      } else {
+        item.removeAttribute("aria-current");
+      }
+    });
+
+    const title = targetPage.dataset.title || "Dashboard";
+
+    pageHeading.textContent = title;
+    breadcrumbPage.textContent = title;
+    document.title = `${title} | Lenard Von Alcantara`;
+
+    // Update the URL without loading a separate HTML file.
+    if (updateHash) {
+      history.replaceState(null, "", `#${pageName}`);
+    }
+
+    closeMobileSidebar();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  // Sidebar menu buttons.
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      showPage(item.dataset.page);
     });
   });
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 760) {
-      navMenu.classList.remove("open");
-      menuToggle.setAttribute("aria-expanded", "false");
-      menuToggle.setAttribute("aria-label", "Open navigation menu");
-      menuToggle.textContent = "☰";
+  // Dashboard buttons and cards that open another view.
+  document.querySelectorAll("[data-go]").forEach((button) => {
+    button.addEventListener("click", () => {
+      showPage(button.dataset.go);
+    });
+  });
+
+  // Support links such as #projects and #contact.
+  document.querySelectorAll("[data-page]").forEach((link) => {
+    if (link.tagName === "A") {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        showPage(link.dataset.page);
+      });
     }
   });
-}
 
-// ========================================
-// AUTOMATIC COPYRIGHT YEAR
-// ========================================
+  // Allow direct links such as index.html#projects.
+  function loadPageFromHash() {
+    const requestedPage = window.location.hash.replace("#", "");
+    const pageExists = document.getElementById(`page-${requestedPage}`);
 
-const currentYear = document.querySelector("#current-year");
-
-if (currentYear) {
-  currentYear.textContent = new Date().getFullYear();
-}
-
-// ========================================
-// GITHUB PUBLIC REPOSITORIES
-// ========================================
-
-const githubUsername = "lenardvon";
-const repoGrid = document.querySelector("#github-repo-grid");
-const repoStatus = document.querySelector("#github-repo-status");
-
-function createRepoCard(repo) {
-  const card = document.createElement("article");
-  card.className = "github-repo-card";
-
-  const heading = document.createElement("h4");
-  heading.className = "github-repo-name";
-
-  const titleLink = document.createElement("a");
-  titleLink.href = repo.html_url;
-  titleLink.target = "_blank";
-  titleLink.rel = "noopener noreferrer";
-  titleLink.textContent = repo.name;
-
-  heading.appendChild(titleLink);
-
-  const description = document.createElement("p");
-  description.className = "github-repo-description";
-  description.textContent =
-    repo.description ||
-    "No description has been added to this repository yet.";
-
-  const meta = document.createElement("div");
-  meta.className = "github-repo-meta";
-
-  if (repo.language) {
-    const language = document.createElement("span");
-    language.className = "github-repo-language";
-    language.textContent = repo.language;
-    meta.appendChild(language);
+    showPage(pageExists ? requestedPage : "dashboard", false);
   }
 
-  const stars = document.createElement("span");
-  stars.textContent = `★ ${repo.stargazers_count} stars`;
-  meta.appendChild(stars);
+  window.addEventListener("hashchange", loadPageFromHash);
 
-  const forks = document.createElement("span");
-  forks.textContent = `⑂ ${repo.forks_count} forks`;
-  meta.appendChild(forks);
+  // =========================================
+  // COLLAPSIBLE DESKTOP SIDEBAR
+  // =========================================
 
-  const link = document.createElement("a");
-  link.className = "github-repo-link";
-  link.href = repo.html_url;
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.textContent = "View Repository ↗";
+  const savedSidebarState = localStorage.getItem("portfolioSidebarCollapsed");
 
-  card.append(heading, description, meta, link);
+  if (savedSidebarState === "true" && !mobileQuery.matches) {
+    appLayout.classList.add("sidebar-collapsed");
+  }
 
-  return card;
-}
+  function updateCollapseButton() {
+    const isCollapsed = appLayout.classList.contains("sidebar-collapsed");
 
-async function loadGitHubRepositories() {
-  if (!repoGrid) return;
+    collapseIcon.textContent = isCollapsed ? "›" : "‹";
+    collapseBtn.setAttribute(
+      "aria-label",
+      isCollapsed ? "Expand sidebar" : "Collapse sidebar"
+    );
+    collapseBtn.title = isCollapsed ? "Expand sidebar" : "Collapse sidebar";
+  }
 
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=100&type=owner`,
-      {
+  collapseBtn.addEventListener("click", () => {
+    appLayout.classList.toggle("sidebar-collapsed");
+
+    localStorage.setItem(
+      "portfolioSidebarCollapsed",
+      String(appLayout.classList.contains("sidebar-collapsed"))
+    );
+
+    updateCollapseButton();
+  });
+
+  updateCollapseButton();
+
+  // =========================================
+  // MOBILE SIDEBAR
+  // =========================================
+
+  function closeMobileSidebar() {
+    appLayout.classList.remove("mobile-sidebar-open");
+    mobileMenuBtn.setAttribute("aria-expanded", "false");
+    mobileMenuBtn.setAttribute("aria-label", "Open navigation");
+  }
+
+  function toggleMobileSidebar() {
+    const isOpen = appLayout.classList.toggle("mobile-sidebar-open");
+
+    mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+    mobileMenuBtn.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation" : "Open navigation"
+    );
+  }
+
+  mobileMenuBtn.addEventListener("click", toggleMobileSidebar);
+  sidebarOverlay.addEventListener("click", closeMobileSidebar);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMobileSidebar();
+    }
+  });
+
+  mobileQuery.addEventListener("change", (event) => {
+    closeMobileSidebar();
+
+    if (event.matches) {
+      appLayout.classList.remove("sidebar-collapsed");
+    } else {
+      updateCollapseButton();
+    }
+  });
+
+  // =========================================
+  // PROFILE IMAGE FALLBACK
+  // =========================================
+
+  function setupProfileImage(image) {
+    const fallback = image.parentElement.querySelector(".avatar-fallback");
+
+    if (!fallback) {
+      return;
+    }
+
+    function showFallback() {
+      image.style.display = "none";
+      fallback.style.display = "grid";
+    }
+
+    function showImage() {
+      image.style.display = "block";
+      fallback.style.display = "none";
+    }
+
+    image.addEventListener("error", showFallback);
+    image.addEventListener("load", showImage);
+
+    if (image.complete) {
+      if (image.naturalWidth > 0) {
+        showImage();
+      } else {
+        showFallback();
+      }
+    }
+  }
+
+  document.querySelectorAll(".profile-image").forEach(setupProfileImage);
+
+  // =========================================
+  // GITHUB REPOSITORIES
+  // =========================================
+
+  const repoGrid = document.getElementById("github-repo-grid");
+  const repoStatus = document.getElementById("github-repo-status");
+  const repoCount = document.getElementById("github-repo-count");
+
+  function createRepoCard(repo) {
+    const card = document.createElement("article");
+    card.className = "repo-card";
+
+    const heading = document.createElement("h3");
+    const link = document.createElement("a");
+
+    link.href = repo.html_url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = repo.name;
+
+    heading.appendChild(link);
+
+    const description = document.createElement("p");
+    description.className = "repo-description";
+    description.textContent =
+      repo.description || "No description provided for this repository.";
+
+    const metadata = document.createElement("div");
+    metadata.className = "repo-meta";
+
+    if (repo.language) {
+      const language = document.createElement("span");
+      language.className = "repo-language";
+      language.textContent = `● ${repo.language}`;
+      metadata.appendChild(language);
+    }
+
+    const stars = document.createElement("span");
+    stars.textContent = `★ ${repo.stargazers_count} stars`;
+
+    const forks = document.createElement("span");
+    forks.textContent = `⑂ ${repo.forks_count} forks`;
+
+    metadata.append(stars, forks);
+    card.append(heading, description, metadata);
+
+    return card;
+  }
+
+  async function loadGitHubRepositories() {
+    if (!repoGrid || !repoStatus) {
+      return;
+    }
+
+    repoStatus.textContent = "Loading public repositories...";
+
+    try {
+      const response = await fetch(GITHUB_API, {
         headers: {
           Accept: "application/vnd.github+json"
         }
+      });
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error("GitHub user was not found.");
+        }
+
+        if (response.status === 403) {
+          throw new Error(
+            "GitHub API rate limit reached. Please try again later."
+          );
+        }
+
+        throw new Error("Unable to retrieve GitHub repositories.");
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(`GitHub API returned status ${response.status}`);
-    }
+      const repositories = await response.json();
 
-    const repositories = await response.json();
+      const publicRepos = repositories
+        .filter((repo) => !repo.fork)
+        .sort((a, b) =>
+          new Date(b.updated_at) - new Date(a.updated_at)
+        );
 
-    // Display up to six recently updated public repositories.
-    const ownRepositories = repositories
-      .filter((repo) => !repo.fork)
-      .slice(0, 6);
+      repoGrid.replaceChildren();
 
-    repoGrid.replaceChildren();
+      if (repoCount) {
+        repoCount.textContent = `${publicRepos.length} public repositories`;
+      }
 
-    if (ownRepositories.length === 0) {
-      const emptyMessage = document.createElement("p");
-      emptyMessage.className = "github-empty";
-      emptyMessage.textContent =
-        "No public repositories are available to display yet. Visit my GitHub profile to see my projects.";
+      if (publicRepos.length === 0) {
+        repoStatus.textContent =
+          "No public non-fork repositories were found.";
+        return;
+      }
 
-      repoGrid.appendChild(emptyMessage);
-      return;
-    }
+      publicRepos.slice(0, 6).forEach((repo) => {
+        repoGrid.appendChild(createRepoCard(repo));
+      });
 
-    ownRepositories.forEach((repo) => {
-      repoGrid.appendChild(createRepoCard(repo));
-    });
-
-    if (repoStatus) {
       repoStatus.textContent =
-        "Showing up to six recently updated public repositories.";
-    }
-  } catch (error) {
-    console.error("Unable to load GitHub repositories:", error);
+        `Showing ${Math.min(publicRepos.length, 6)} recently updated repositories.`;
 
-    repoGrid.replaceChildren();
+      if (publicRepos.length > 6) {
+        const moreLink = document.createElement("a");
+        moreLink.className = "btn btn-secondary";
+        moreLink.href = `https://github.com/${GITHUB_USERNAME}?tab=repositories`;
+        moreLink.target = "_blank";
+        moreLink.rel = "noopener noreferrer";
+        moreLink.textContent = "View all repositories on GitHub ↗";
 
-    const errorMessage = document.createElement("p");
-    errorMessage.className = "github-error";
-    errorMessage.textContent =
-      "Repositories could not be loaded right now. Please visit my GitHub profile to see my projects.";
+        moreLink.style.gridColumn = "1 / -1";
+        moreLink.style.justifySelf = "start";
 
-    repoGrid.appendChild(errorMessage);
+        repoGrid.appendChild(moreLink);
+      }
+    } catch (error) {
+      console.error("GitHub repository error:", error);
 
-    if (repoStatus) {
       repoStatus.textContent =
-        "The repository list needs an internet connection and access to the GitHub API.";
+        `${error.message} You can still visit the GitHub profile directly.`;
+
+      if (repoCount) {
+        repoCount.textContent = "Unavailable";
+      }
     }
   }
-}
 
-loadGitHubRepositories();
+  loadGitHubRepositories();
 
-// ========================================
-// CONTACT FORM VALIDATION
-// Demo only: does not send email.
-// ========================================
+  // =========================================
+  // CONTACT EMAIL
+  // =========================================
 
-const contactForm = document.querySelector("#contact-form");
-const formStatus = document.querySelector("#form-status");
+  const contactEmailText = document.getElementById("contact-email-text");
+  const copyEmailBtn = document.getElementById("copyEmailBtn");
+  const contactForm = document.getElementById("contactForm");
+  const contactFeedback = document.getElementById("contactFeedback");
 
-if (contactForm && formStatus) {
-  contactForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+  if (contactEmailText) {
+    if (CONTACT_EMAIL.trim()) {
+      contactEmailText.textContent = CONTACT_EMAIL;
 
-    formStatus.className = "form-status";
+      const emailLink = document.createElement("a");
+      emailLink.href = `mailto:${CONTACT_EMAIL}`;
+      emailLink.textContent = CONTACT_EMAIL;
+      emailLink.style.color = "var(--green)";
+      emailLink.style.fontWeight = "700";
 
-    if (!contactForm.checkValidity()) {
-      contactForm.reportValidity();
-
-      formStatus.textContent =
-        "Please complete all fields using valid information.";
-
-      formStatus.classList.add("error");
-      return;
+      contactEmailText.replaceChildren(emailLink);
+    } else {
+      contactEmailText.textContent = "Email address not configured yet.";
     }
+  }
 
-    const formData = new FormData(contactForm);
-    const name = String(formData.get("name") || "").trim();
-    const email = String(formData.get("email") || "").trim();
-    const subject = String(formData.get("subject") || "").trim();
-    const message = String(formData.get("message") || "").trim();
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener("click", async () => {
+      if (!CONTACT_EMAIL.trim()) {
+        contactFeedback.textContent =
+          "Add your email address to CONTACT_EMAIL in js/script.js first.";
+        return;
+      }
 
-    if (!name || !email || !subject || !message) {
-      formStatus.textContent = "Please complete all fields.";
-      formStatus.classList.add("error");
-      return;
-    }
+      try {
+        await navigator.clipboard.writeText(CONTACT_EMAIL);
+        copyEmailBtn.textContent = "Email Copied!";
 
-    formStatus.textContent =
-      "Validation successful! This demo does not send messages yet. " +
-      "A backend or configured form service is needed to deliver your message.";
+        contactFeedback.textContent =
+          "Your email address was copied to the clipboard.";
 
-    formStatus.classList.add("success");
-  });
-}
+        window.setTimeout(() => {
+          copyEmailBtn.textContent = "Copy Email Address";
+        }, 2000);
+      } catch (error) {
+        contactFeedback.textContent =
+          `Please copy your email manually: ${CONTACT_EMAIL}`;
+      }
+    });
+  }
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!contactForm.reportValidity()) {
+        return;
+      }
+
+      if (!CONTACT_EMAIL.trim()) {
+        contactFeedback.textContent =
+          "Configure CONTACT_EMAIL in js/script.js before using this form.";
+        return;
+      }
+
+      const formData = new FormData(contactForm);
+
+      const senderName = String(formData.get("name") || "").trim();
+      const senderEmail = String(formData.get("email") || "").trim();
+      const subject = String(formData.get("subject") || "").trim();
+      const message = String(formData.get("message") || "").trim();
+
+      const emailSubject = encodeURIComponent(subject);
+      const emailBody = encodeURIComponent(
+        `Name: ${senderName}\n` +
+        `Email: ${senderEmail}\n\n` +
+        `Message:\n${message}`
+      );
+
+      contactFeedback.textContent =
+        "Opening your email application. Review and send the message there.";
+
+      window.location.href =
+        `mailto:${CONTACT_EMAIL}?subject=${emailSubject}&body=${emailBody}`;
+    });
+  }
+
+  // =========================================
+  // FOOTER AND BACK TO TOP
+  // =========================================
+
+  const currentYear = document.getElementById("currentYear");
+  const backToTop = document.getElementById("backToTop");
+
+  if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+  }
+
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  // Open the requested page on first load.
+  loadPageFromHash();
+});
